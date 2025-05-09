@@ -1,23 +1,26 @@
-import { configureStore } from '@reduxjs/toolkit'
-import { persistStore, persistReducer } from 'redux-persist'
-import storage from 'redux-persist/lib/storage'
-import { combineReducers } from 'redux'
-import { PersistGate } from 'redux-persist/integration/react'
-import taskReducer from '../features/taskSlice'
+import { configureStore } from '@reduxjs/toolkit';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import { combineReducers } from 'redux';
+import authReducer from '../features/authSlice';
 
 const persistConfig = {
   key: 'root',
   storage,
-}
+};
 
 const rootReducer = combineReducers({
-  tasks: taskReducer,
-})
+  auth: authReducer,
+});
 
-const persistedReducer = persistReducer(persistConfig, rootReducer)
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
   reducer: persistedReducer,
-})
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }), // Sin concatenar thunk explícitamente
+});
 
-export const persistor = persistStore(store)
+export const persistor = persistStore(store);

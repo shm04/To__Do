@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { addTask, removeTask, toggleTask } from '../features/taskSlice'
 
-export default function TaskList() {
+const TaskList = () => {
   const [title, setTitle] = useState('')
   const tasks = useSelector((state) => state.tasks)
   const dispatch = useDispatch()
@@ -53,3 +53,5 @@ export default function TaskList() {
     </div>
   )
 }
+
+export default TaskList
