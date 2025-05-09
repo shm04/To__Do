@@ -1,11 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
@@ -18,56 +12,350 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
+html, body, #root {
+  height: 100%;
+  width: 100%;
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  padding: 0;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* Login */
+
+.message {
+  font-size: 0.9rem;
+  position: absolute;
+  top: 3rem;
+  left: 3rem;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #1e1e1e;
+  color: #e5e5e5;
+}
+
+.login-card {
+  background-color: #2a2a2a;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.login-card h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #e5e5e5;
+}
+
+.login-card input {
+  width: 100%;
+  padding: 0.75rem;
+  margin: 0.5rem 0;
+  border: 1px solid #555;
+  border-radius: 4px;
+  background-color: #333;
+  color: #e5e5e5;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+.login-card input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.login-card button {
+  width: 100%;
+  padding: 0.75rem;
+  margin: 1rem 0;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease;
+}
+
+.login-card button:hover {
+  background-color: #0056b3;
+}
+
+.login-card .error-message {
+  color: #ff6b6b;
+  margin-top: 0.5rem;
+}
+
+.login-card a {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.login-card a:hover {
+  text-decoration: underline;
+}
+
+/* Register */
+
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #1e1e1e;
+  color: #e5e5e5;
+}
+
+.register-card {
+  background-color: #2a2a2a;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.register-card h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #e5e5e5;
+}
+
+.register-card input {
+  width: 100%;
+  padding: 0.75rem;
+  margin: 0.5rem 0;
+  border: 1px solid #555;
+  border-radius: 4px;
+  background-color: #333;
+  color: #e5e5e5;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+.register-card input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.register-card button {
+  width: 100%;
+  padding: 0.75rem;
+  margin: 1rem 0;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease;
+}
+
+.register-card button:hover {
+  background-color: #0011ff;
+}
+
+.register-card .message {
+  margin-top: 1rem;
+  font-size: 1rem;
+}
+
+.success {
+  color: #28a745;
+}
+
+.error {
+  color: #ff6b6b;
+}
+
+/* Dashboard */
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60%;
+  margin-top: 100px;
+}
+
+/* Navbar */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+  align-items: center;
+  background-color: #333;
+  color: #e5e5e5;
+  padding: 1rem 3rem;
+}
+
+/* TaskForm */
+
+.task-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 20px;
+  max-width: 600px;
+}
+
+.task-form input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.task-form button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  margin: 0;
+}
+
+/* Task List */
+
+.task-list {
+  max-width: 600px;
+  width: 100%;
+  color: #e5e5e5;
+  padding: 1rem;
+  border-radius: 8px;
+  margin: 1rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.tasks-ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.task-li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2a2a2a;
+  margin: 0.5rem 0;
+  padding: 0.75rem;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.li-content {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 1rem;
+  margin-left: 1rem;
+}
+
+.task-li:hover {
+  background-color: #333;
+}
+
+.normal {
+  color: #e5e5e5;
+  font-size: 1.2rem;
+}
+
+.task-text.line-through {
+  text-decoration: line-through;
+  color: #a0a0a0;
+  font-size: 1.2rem;
+}
+
+.delete-completed {
+  font-size: 1.2rem;
+  margin: 1rem 0;
+  padding: 1rem;
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.delete-completed:hover {
+  background-color: #c9302c;
+}
+
+.task-select {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 2px solid #666;
+  margin-right: 0;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.task-select:hover {
+  border-color: #888;
+}
+
+.completed {
+  background-color: #007bff;
+  border-color: #007bff9d;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  padding: 0.5rem;
+  margin-left: 0.5rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
+  transition: background-color 0.2s ease;
+  font-size: 1rem;
+  text-decoration: none;}
+
 button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  background-color: #0011ff;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+input {
+  background-color: #333;
+  color: #e5e5e5;
+  border: 1px solid #555;
+  border-radius: 4px;
+  padding: 0.5rem;
+  margin-right: 0.5rem;
+  flex: 1;
+  font-size: 1.2rem;
 }
