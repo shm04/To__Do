@@ -4,6 +4,11 @@
 
 To-Do is an advanced task management application that allows users to create, edit, complete, and delete tasks efficiently. Designed with a clean and modern interface, the application offers an intuitive user experience on both desktop and mobile devices.
 
+## 🌐 Live Demo
+
+* **Frontend:** [To-Do Pro on Netlify](https://to-do-shm.netlify.app)
+* **Backend API:** [To-Do Pro API on Render](https://to-do-nppa.onrender.com)
+
 ## 🛠️ Technologies Used
 
 * **Frontend:** React, Redux, Vite
@@ -80,10 +85,10 @@ cd frontend
 npm install
 ```
 
-* Configure the `.env` file:
+* Configure the `/api/axios/js` file:
 
 ```
-VITE_API_URL=http://localhost:5000/api
+baseURL: 'https://to-do-nppa.onrender.com'
 ```
 
 * Start the client:
@@ -101,12 +106,11 @@ npm run dev
 3. Set up environment variables on Render.
 4. Deploy the service.
 
-### Frontend (Vercel)
+### Frontend (Netlify)
 
-1. Create an account on Vercel.
-2. Connect the GitHub repository.
-3. Set the environment variable `VITE_API_URL`.
-4. Deploy the application.
+1. Create an account on Netlify.
+2. Connect the GitHub repository..
+3. Deploy the application.
 
 ## 🌟 API Endpoints
 
@@ -141,7 +145,7 @@ npm run dev
 * Test API with Postman:
 
 ```
-POST http://localhost:5000/api/users/login
+POST https://to-do-nppa.onrender.com/api/users/login
 ```
 
 ## 🤝 Contributions
@@ -150,4 +154,4 @@ Contributions are welcome! Feel free to submit a pull request or open an issue.
 
 ## 📄 License
 
-This project is licensed under the MIT License.
+This project is licensed under the [MIT License](LICENSE).
