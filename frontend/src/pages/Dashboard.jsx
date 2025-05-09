@@ -1,12 +1,18 @@
+import React from "react";
 import TaskList from "../components/TaskList";
+import TaskForm from "../components/TaskForm";
+import Navbar from "../components/Navbar";
 
 const Dashboard = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <h1 className="text-4xl font-bold mb-4">Dashboard</h1>
-      <TaskList />
-    </div>
+    <section className="main">
+      <Navbar />
+      <div className="content">
+        <TaskForm />
+        <TaskList />
+      </div>
+    </section>
   );
-}
+};
 
 export default Dashboard;

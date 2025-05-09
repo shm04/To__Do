@@ -1,57 +1,88 @@
-import React, { useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { addTask, removeTask, toggleTask } from '../features/taskSlice'
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { toggleComplete, deleteCompletedTasks, editTask } from '../features/taskSlice';
 
 const TaskList = () => {
-  const [title, setTitle] = useState('')
-  const tasks = useSelector((state) => state.tasks)
-  const dispatch = useDispatch()
+  const tasks = useSelector((state) => state.tasks);
+  const dispatch = useDispatch();
+  const [editId, setEditId] = useState(null);
+  const [newTitle, setNewTitle] = useState('');
 
-  const handleAddTask = () => {
-    if (title.trim()) {
-      dispatch(addTask({ id: Date.now(), title, completed: false }))
-      setTitle('')
+  const handleToggleComplete = (task) => {
+    dispatch(toggleComplete({ id: task._id, completed: !task.completed }));
+  };
+
+  const handleDeleteCompleted = () => {
+    dispatch(deleteCompletedTasks());
+  };
+
+  const handleEdit = (task) => {
+    setEditId(task._id);
+    setNewTitle(task.title);
+  };
+
+  const handleSave = (id) => {
+    if (newTitle.trim()) {
+      dispatch(editTask({ id, title: newTitle }));
+      setEditId(null);
     }
-  }
+  };
 
   return (
-    <div className="p-4">
-      <div className="mb-4">
-        <input
-          type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          placeholder="Nueva tarea"
-          className="border p-2 rounded"
-        />
-        <button
-          onClick={handleAddTask}
-          className="ml-2 px-4 py-2 bg-blue-500 text-white rounded"
-        >
-          Agregar
-        </button>
-      </div>
-      <ul>
+    <div className="task-list">
+      <h2>Tasks List</h2>
+      <ul className="tasks-ul">
         {tasks.map((task) => (
           <li
-            key={task.id}
-            className={`flex justify-between p-2 mb-2 rounded ${task.completed ? 'bg-green-200' : 'bg-gray-100'}`}
+            key={task._id}
+            className="task-li"
           >
-            <span onClick={() => dispatch(toggleTask(task.id))} className="cursor-pointer">
-              {task.completed ? '✅ ' : '📝 '}
-              {task.title}
-            </span>
-            <button
-              onClick={() => dispatch(removeTask(task.id))}
-              className="text-red-500"
-            >
-              Eliminar
-            </button>
+            <div className="li-content">
+              {/* Círculo de selección para marcar como completada */}
+              <div
+                onClick={() => handleToggleComplete(task)}
+                className={`task-select ${
+                  task.completed ? 'completed' : ''
+                }`}
+              />
+              {editId === task._id ? (
+                <>
+                  <input
+                    type="text"
+                    value={newTitle}
+                    onChange={(e) => setNewTitle(e.target.value)}
+                  />
+                  <button
+                    onClick={() => handleSave(task._id)}
+                    className="save-button"
+                  >
+                    Guardar
+                  </button>
+                </>
+              ) : (
+                <span className={`task-text ${task.completed ? 'line-through' : 'normal'}`}>
+                  {task.title}
+                </span>
+              )}
+            </div>
+            <div>
+              <button
+                onClick={() => handleEdit(task)}
+              >
+                Editar
+              </button>
+            </div>
           </li>
         ))}
       </ul>
+      <button
+        onClick={handleDeleteCompleted}
+        className="delete-completed"
+      >
+        Eliminar tareas completadas
+      </button>
     </div>
-  )
-}
+  );
+};
 
-export default TaskList
+export default TaskList;

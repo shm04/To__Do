@@ -1,25 +1,29 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import api from '../api/axios';
 
-const initialState = {
-  user: null,
-  token: null,
-  loading: false,
-};
+export const loginUser = createAsyncThunk('auth/login', async ({ username, password }) => {
+  const response = await api.post('/users/login', { username, password });
+  const token = response.data.token;
+
+  if (token) {
+    localStorage.setItem('token', token);  // Guardar el token correctamente
+  } else {
+    console.error('No se recibió un token al iniciar sesión');
+  }
+
+  return response.data;
+});
 
 const authSlice = createSlice({
   name: 'auth',
-  initialState,
-  reducers: {
-    loginSuccess: (state, action) => {
-      state.user = action.payload.user;
+  initialState: { user: null, token: null },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(loginUser.fulfilled, (state, action) => {
+      state.user = action.payload;
       state.token = action.payload.token;
-    },
-    logout: (state) => {
-      state.user = null;
-      state.token = null;
-    },
+    });
   },
 });
 
-export const { loginSuccess, logout } = authSlice.actions;
 export default authSlice.reducer;
