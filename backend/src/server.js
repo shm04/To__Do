@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const setupSwagger = require('./swagger');
 const mongoose = require('mongoose');
 const taskRoutes = require('./routes/taskRoutes');  
 const userRoutes = require('./routes/userRoutes');
@@ -13,6 +14,8 @@ app.use(express.json());
 // Rutas
 app.use('/api/tasks', taskRoutes);
 app.use('/api/users', userRoutes);
+
+setupSwagger(app);
 
 const PORT = process.env.PORT || 5000;
 
