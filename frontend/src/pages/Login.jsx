@@ -13,35 +13,35 @@ function Login() {
     if (await login(username, password)) {
       navigate("/dashboard");
     } else {
-      setError("Usuario o contraseña incorrectos");
+      setError("Incorrect username or password");
     }
   };
 
   return (
     <div className="login-container">
       <div className="message">
-        <h3>Check out with this user</h3>
+        <h3>Try with this user</h3>
         <p>Username: user</p>
         <p>Password: userpassword</p>
       </div>
       <div className="login-card">
-        <h2>Iniciar Sesión</h2>
+        <h2>Login</h2>
         <input
           type="text"
-          placeholder="Usuario"
+          placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
         <input
           type="password"
-          placeholder="Contraseña"
+          placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button onClick={handleLogin}>Ingresar</button>
+        <button onClick={handleLogin}>Log In</button>
         {error && <p className="error-message">{error}</p>}
         <a href="/register" className="register-link">
-          Regístrate
+          Sign Up
         </a>
       </div>
     </div>

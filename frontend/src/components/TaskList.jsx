@@ -38,7 +38,6 @@ const TaskList = () => {
             className="task-li"
           >
             <div className="li-content">
-              {/* Círculo de selección para marcar como completada */}
               <div
                 onClick={() => handleToggleComplete(task)}
                 className={`task-select ${
@@ -79,7 +78,7 @@ const TaskList = () => {
         onClick={handleDeleteCompleted}
         className="delete-completed"
       >
-        Eliminar tareas completadas
+        Delete completed tasks
       </button>
     </div>
   );

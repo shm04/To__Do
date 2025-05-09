@@ -22,20 +22,20 @@ function Register() {
   return (
     <div className="register-container">
       <div className="register-card">
-        <h2>Registrarse</h2>
+        <h2>Sign Up</h2>
         <input
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          placeholder="Usuario"
+          placeholder="Username"
         />
         <input
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          placeholder="Contraseña"
+          placeholder="Password"
         />
-        <button onClick={handleRegister}>Registrar</button>
+        <button onClick={handleRegister}>Sign Up</button>
         {message && (
           <p className={`message ${isSuccess ? 'success' : 'error'}`}>{message}</p>
         )}

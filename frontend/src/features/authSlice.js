@@ -6,9 +6,9 @@ export const loginUser = createAsyncThunk('auth/login', async ({ username, passw
   const token = response.data.token;
 
   if (token) {
-    localStorage.setItem('token', token);  // Guardar el token correctamente
+    localStorage.setItem('token', token);
   } else {
-    console.error('No se recibió un token al iniciar sesión');
+    console.error('No token received during login');
   }
 
   return response.data;

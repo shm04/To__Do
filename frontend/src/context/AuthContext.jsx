@@ -20,7 +20,7 @@ export function AuthProvider({ children }) {
       setUser({ username: response.data.username });
       return true;
     } catch (error) {
-      console.error('Error en el login:', error.response?.data?.message || error.message);
+      console.error('Login error:', error.response?.data?.message || error.message);
       return false;
     } finally {
       setLoading(false);
@@ -28,18 +28,18 @@ export function AuthProvider({ children }) {
   };
 
   const register = async (username, password) => {
-    setLoading(true);
-    try {
-      const response = await axios.post('/users/register', { username, password });
-      console.log('Registro exitoso:', response.data);
-      return true;
-    } catch (error) {
-      console.error('Error en el registro:', error.response?.data?.message || error.message);
-      return false;
-    } finally {
-      setLoading(false);
-    }
-  };
+  setLoading(true);
+  try {
+    const response = await axios.post('/users/register', { username, password });
+    console.log('Successful registration:', response.data);
+    return true;
+  } catch (error) {
+    console.error('Registration error:', error.response?.data?.message || error.message);
+    return false;
+  } finally {
+    setLoading(false);
+  }
+};
 
   const logout = () => {
     localStorage.removeItem('token');
